@@ -9,6 +9,8 @@
 #ifndef _FFCONF
 #define _FFCONF 82786	/* Revision ID */
 
+#include "FreeRTOS.h"
+#include "semphr.h"
 
 /*---------------------------------------------------------------------------/
 / Functions and Buffer Configurations
@@ -175,9 +177,9 @@ partition */
 /* A header file that defines sync object types on the O/S, such as
 /  windows.h, ucos_ii.h and semphr.h, must be included prior to ff.h. */
 
-#define _FS_REENTRANT	0		/* 0:Disable or 1:Enable */
+#define _FS_REENTRANT	1		/* 0:Disable or 1:Enable */
 #define _FS_TIMEOUT		1000	/* Timeout period in unit of time ticks */
-#define	_SYNC_t			HANDLE	/* O/S dependent type of sync object. e.g.
+#define	_SYNC_t			SemaphoreHandle_t	/* O/S dependent type of sync object. e.g.
 HANDLE, OS_EVENT*, ID and etc.. */
 
 /* The _FS_REENTRANT option switches the reentrancy (thread safe) of the
@@ -189,7 +191,7 @@ HANDLE, OS_EVENT*, ID and etc.. */
 /      function must be added to the project. */
 
 
-#define	_FS_LOCK	    0	/* 0:Disable or >=1:Enable */
+#define	_FS_LOCK	    1 /* 0:Disable or >=1:Enable */
 /* To enable file lock control feature, set _FS_LOCK to 1 or greater.
    The value defines how many files can be opened simultaneously. */
 
